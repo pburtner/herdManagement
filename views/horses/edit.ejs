@@ -1,0 +1,68 @@
+<% layout('layouts/boilerplate') %>
+<div class="container">
+    <div class="col-md-6 offset-md-2">
+        <h1 class="text-center mb-5">Edit <%= horse.name %></h1>
+    </div>
+    <form action="/horses/<%=horse._id%>?_method=PUT" method="POST" novalidate class="validated-form"> <!-- " method="POST" novalidate class="validated-form" -->
+        <div class="row">
+            <div class="col-md-2 offset-md-2">
+                <img src="/images/horse.jpg" class="horse-thumb mb-3" alt="...">
+                <!-- <label for="">Upload Image</label> -->
+                <!-- <div class="form-file custom-file">
+                    <input type="file" class="form-file-input" id="image" name="image" multiple>
+                    <label class="form-file-label" for="image">
+                        <span class="form-file-text custom-file-label">Choose image(s)...</span>
+                        <span class="form-file-button">Browse</span>
+                    </label>
+                </div> -->
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input class="form-control" type="text" id="name" name="horse[name]" 
+                        value="<%= horse.name %>" required>
+                    <div class="valid-feedback">Looks good</div>
+                    <div class="invalid-feedback">Please provide a name.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="registeredName" class="form-label">Registered Name</label>
+                    <input class="form-control" type="text" id="registeredName" name="horse[registeredName]" value="<%= horse.registeredName %>">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 offset-md-2">
+                <label for="birthYear" class="form-label">Birth Year</label>
+                <input class="form-control" type="number" min="1990" id="birthYear" name="horse[birthYear]" 
+                    value="<%= horse.birthYear %>" required>
+                <div class="valid-feedback">Looks good</div>
+                <div class="invalid-feedback">Please provide a birth year of 1990 or greater.</div>
+            </div>
+            <div class="col-md-2">
+                <label for="breed" class="form-label">Breed</label>
+                <input class="form-control" type="text" id="breed" name="horse[breed]" 
+                    value="<%= horse.breed %>" required>
+                <div class="valid-feedback">Looks good</div>
+                <div class="invalid-feedback">Please provide a breed.</div>
+            </div>
+            <div class="col-md-2">
+                <label for="gender" class="form-label">Gender</label>
+                <select id="gender" name="horse[gender]" class="form-select btn btn-secondary" aria-label="Default select example" required>
+                    <option selected disabled value="">Choose Gender</option>
+                    <option value="Gelding" <% if ("Gelding" == horse.gender) {%> selected <% } %>>Gelding</option>
+                    <option value="Mare" <% if ("Mare" == horse.gender) {%> selected <% } %>>Mare</option>
+                </select>
+                <div class="valid-feedback">Looks good</div>
+                <div class="invalid-feedback">Please select gender.</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 offset-md-2 mt-3">
+                <div class="mb-3">
+                    <button class="btn btn-success">Update Horse</button>
+                    <a class="btn btn-warning" href="/horses/<%=horse._id%>">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

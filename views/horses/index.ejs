@@ -1,0 +1,20 @@
+<% layout('layouts/boilerplate') %>
+<h1 class="display-1 text-center">Horses of Chestnut Ridge</h1>
+<div class="row">
+    <% for (let horse of horses) { %>
+        <div class="card mb-3 mr-3" style="width: 18rem;">
+            <img src="/images/horse.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title"><%= horse.name %></h5>
+                <p class="card-text"><%= horse.registeredName %></p>
+            </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item"><%= horse.age %> Years Old</li>
+                <li class="list-group-item"><%= horse.breed %></li>
+                <li class="list-group-item"><%= horse.gender %></li>
+            </ul>
+            <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+            <a class="btn btn-primary" href="/horses/<%=horse._id%>">View <%= horse.name %></a>
+        </div>    
+    <% } %>
+</div>

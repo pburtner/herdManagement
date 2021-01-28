@@ -8,3 +8,10 @@ const HorseSchema = new Schema({
     breed: String,
     gender: String
 })
+
+HorseSchema.virtual('age').get(function () {
+    const currentDate = new Date(Date.now());
+    return currentDate.getFullYear() - this.birthYear;
+});
+
+module.exports = mongoose.model('Horse', HorseSchema);
